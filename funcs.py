@@ -36,14 +36,25 @@ def get_time(trip_id, stop_id, stop_times): # returns (arrival_time, departure_t
 			return (time['arrival_time'], time['departure_time'])
 	return None
 
-def get_times(trip_ids, stop_id, stop_times): # retrun list of tuples of times on given <stop_id> and list of trip_ids
+def get_times(trip_ids, stop_id, stop_times): # retruns list of tuples of times on given <stop_id> and list of trip_ids
 	return [get_time(trip, stop_id, stop_times) for trip in trip_ids]
 
-def get_next_stop_with_times(trips_ids, stop_id, stop_times):
+def get_stop_with_times(trips_ids, stop_id, stop_times): # returns (stop_id, [times])
 	return (stop_id, get_times(trip_ids, stop_id, stop_times))
 
 def get_list_of_next_stops_with_times(trips_ids, next_stop_ids, stop_times):
-	return [get_next_stop_with_times(trips_ids, stop_id, stop_times) for stop_id in stop_ids]
+	return [get_stop_with_times(trips_ids, stop_id, stop_times) for stop_id in next_stop_ids]
 
 def get_dict_of_lines_stopsAndTimes(lines, ):
 	return {}
+
+
+# create_struct(stop_id, data):
+#	routes, trips = get_route_ids_and_trip_ids(stop_id, stop_times)
+#	next_stops = get_next_stops(stop_id, trips)
+#	out = {}
+#	for route in routes:
+#		for stop in next_stops:
+#			out[route].append((stop, get_times(route, stop, trips)
+#	return out
+
