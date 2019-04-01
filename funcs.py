@@ -36,3 +36,6 @@ def get_time(trip_id, stop_id, stop_times): # returns (arrival_time, departure_t
 			return (time['arrival_time'], time['departure_time'])
 	return None
 
+def get_times(trip_ids, stop_id, stop_times): # retrun list of tuples of times on given <stop_id> and list of trip_ids
+	return [get_time(trip, stop_id, stop_times) for trip in trip_ids]
+
