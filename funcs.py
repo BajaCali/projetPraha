@@ -56,8 +56,8 @@ def get_next_stops(stop_id, trip_ids, stop_times):
 	next_stops = []
 	for i in range(1,len(stop_times)):
 		for trip in trip_ids:
-			if stop_times[i]["trip_id"] == trip and stop_times[i-1]["stop_id"] == stop and stop_times[i]["stop_id"] not in next_stops:
-				next_stops.append(stop_times[i+1]["stop_id"])
+			if stop_times[i]["trip_id"] == trip and stop_times[i-1]["stop_id"] == stop_id and stop_times[i]["stop_id"] not in next_stops:
+				next_stops.append(stop_times[i]["stop_id"])
 	if not next_stops:
 		return None
 	return next_stops
@@ -75,6 +75,6 @@ def get_times_for_stop(route_id, stop_id, trip_ids, stop_times, trips_data):
 
 
 # todo:
-# f(zastavka) -> [linky] and [trips] done
-# g(zastavka, trips) -> [next_stops]
+# f(zastavka) -> [linky] and [trips] done - get_route_ids_and_trip_ids
+# g(zastavka, trips) -> [next_stops] done - get_next_stops
 # h(linka, zastavka, trips) -> [casy]
