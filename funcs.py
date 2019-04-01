@@ -70,6 +70,24 @@ def get_times_for_stop(route_id, stop_id, trip_ids, stop_times, trips_data):
 				trips_on_route.append(trip_id)
 	return get_times(trips_on_route, stop_id, stop_times)
 
+def create_stop_struct(stop_id, trips_data, stop_times):
+	trip_ids, route_ids = get_trip_ids_and_route_ids(stop_id, stop_times, trips_data)
+	routes = {}
+	next_stops = get_next_stops(stop_id, trip_ids, stop_times)
+	for route_id in route_ids:
+		routes[route_id] = {}
+		for next_stop in next_stops:
+			route[route_id][next_stop] = get_times_for_stop(route_id, next_stop, trip_ids, stop_times, trips_data)
+	return routes
+
+def get_net_struct(trip_data, stop_times, stops):
+	struct = {}
+	for stop in stops:
+		struct[stop["stop_id"]] = create_stop_struct(stop["stop_id"], trips_data, stop_times)
+	return struct
+
+
+
 
 
 
