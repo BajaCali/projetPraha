@@ -1,30 +1,32 @@
-def get_stop_id_by_name(name, stops): # returns <stop_id> from name of the stop
+def get_stop_id(name, stops): # returns <stop_id> from name of the stop
 	for stop in stops:
 		if (stop["stop_name"] == name):
 			return stop["stop_id"]
 	return None
 
 
-def get_trip_ids_by_stop_id(stop_id, stop_times, trips_data): # returns list of <trip_id>s which stops at the stop with given stop_id
+def get_trip_ids_and_route_ids(stop_id, stop_times, trips_data): # returns list of <trip_id>s and <route_id>s which stops at the stop with given stop_id
 	trip_ids = []
-	lines_id = []
+	route_ids = []
 	for trip in trips:
 		if (stop_id == trip["stop_id"]):
 			trip_ids.append(trip["trip_id"])
-			lines_id.append(get_route_id_by_trip_id(trip["trip_id"], trips_data))
+			route_ids.append(get_route_id_by_trip_id(trip["trip_id"], trips_data))
 	if (trip_ids == []):
-		return None
-	return trip_ids, lines_id
+		trip_ids = None
+	if (route_ids == []):
+		route_ids = None
+	return trip_ids, route_ids
 
 
-def get_route_id_by_trip_id(trip_id, trips): # returns <route_id> of given trip_id
+def get_route_id(trip_id, trips): # returns <route_id> of given trip_id
 	for trip in trips:
 		if (trip_id == trip['trip_id']):
 			return trip['route_id']
 	return None
 
 
-def get_stop_ids_with_times_by_trip_id(trip_id, stop_times): # returns dict, where value is list with times and keys are <stop_id>s
+def get_stop_ids_with_times(trip_id, stop_times): # returns dict, where value is list with times and keys are <stop_id>s
 	stop_ids_with_times = {}
 	for i in range(len(stop_times)):
 		if stop_times[i+1]['trip_id'] == trip_id:
