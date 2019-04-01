@@ -50,7 +50,17 @@ def get_times(trip_ids, stop_id, stop_times): # retrun list of tuples of times o
 def get_next_stop_with_times(trips_ids, stop_id, stop_times):
 	return (stop_id, get_times(trip_ids, stop_id, stop_times))
 
+def get_next_stops(stop_id, trip_ids, stop_times):
+	next_stops = []
+	for i in range(1,len(stop_times)):
+		for trip in trip_ids:
+			if stop_times[i]["trip_id"] == trip and stop_times[i-1]["stop_id"] == stop and stop_times[i]["stop_id"] not in next_stops:
+				next_stops.append(stop_times[i+1]["stop_id"])
+	if not next_stops:
+		return None
+	return next_stops
+
 # todo:
-# f(zastavka) -> [linky] and [trips]
+# f(zastavka) -> [linky] and [trips] done
 # g(zastavka, trips) -> [next_stops]
 # h(linka, zastavka, trips) -> [casy]
