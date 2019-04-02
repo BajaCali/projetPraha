@@ -8,10 +8,10 @@ def get_stop_id(name, stops): # returns <stop_id> from name of the stop
 def get_trip_ids_and_route_ids(stop_id, stop_times, trips_data): # returns list of <trip_id>s and <route_id>s which stops at the stop with given stop_id
 	trip_ids = []
 	route_ids = []
-	for trip in trips:
-		if (stop_id == trip["stop_id"]):
-			trip_ids.append(trip["trip_id"])
-			route_ids.append(get_route_id_by_trip_id(trip["trip_id"], trips_data))
+	for time in stop_times:
+		if (stop_id == time["stop_id"]):
+			trip_ids.append(time["trip_id"])
+			route_ids.append(get_route_id_by_trip_id(time["trip_id"], trips_data))
 	if (trip_ids == []):
 		trip_ids = None
 	if (route_ids == []):
@@ -83,14 +83,8 @@ def create_stop_struct(stop_id, trips_data, stop_times):
 def get_net_struct(trip_data, stop_times, stops):
 	struct = {}
 	for stop in stops:
-		struct[stop["stop_id"]] = create_stop_struct(stop["stop_id"], trips_data, stop_times)
+		struct[stop["stop_id"]] = create_stop_struct(stop["stop_id"], trip_data, stop_times)
 	return struct
-
-
-
-
-
-
 
 # todo:
 # f(zastavka) -> [linky] and [trips] done - get_route_ids_and_trip_ids
