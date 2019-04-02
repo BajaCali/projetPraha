@@ -86,6 +86,23 @@ def get_net_struct(trip_data, stop_times, stops):
 		struct[stop["stop_id"]] = create_stop_struct(stop["stop_id"], trip_data, stop_times)
 	return struct
 
+def lookup_stops(stop_id, arrive_time, struct):
+	s = {}
+	for line, stop_info in struct[z].items():
+		for stop, times in stop_info.items():
+			for arrive, depart in times:
+				if depart >=arrive_time:
+					if s[z][1]>arrive:
+						s[z] = (depart, arrive)
+	return s
+
+def lookup_routes(stop_id, struct):
+	routes = []
+	for route in struct[stop_id]:
+		if route not in routes:
+			routes.append(route)
+	return routes
+
 # todo:
 # f(zastavka) -> [linky] and [trips] done - get_route_ids_and_trip_ids
 # g(zastavka, trips) -> [next_stops] done - get_next_stops
