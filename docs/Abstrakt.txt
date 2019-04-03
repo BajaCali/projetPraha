@@ -1,0 +1,7 @@
+Projet Prahu
+
+Úkolem je projet všechny linky pražských tramvají za jeden den. Linky budeme projíždět v sestupném pořadí (od 26 k 1). Pro tyto účely bylo třeba vymyslet datovou strukturu, která by umožnila rychlý přístup ke spojům na další zastávku. Naše struktura nám pak umožnila snadno navrhnout algoritmus pro hledání nejkratší cesty (ne nutně však nejrychlejší) z výchozích zastávek na libovolnou zastávku cílové linky v konkrétním čase. Algoritmus pracuje s vrstvami tak, že z jedné zastávky zjistí všechny následující možné spoje na nejbližší zastávky. Pro každou nalezlou zastávku pak zopakuje postup, a tak se jednou dosaneme až k zastávce, kde pojede linka, kterou hledáme. Navržené algoritmy a datové struktury nám pomohou odpovědět na otázku, zdali zvládmene projet všechny linky tramvají PIDu. 
+
+Michal Němec - michaelnemec47@gmail.com
+Jan Piroutek - jan.piroutek@gmail.com
+Michal Vícha - vichamichal@gmail.com
